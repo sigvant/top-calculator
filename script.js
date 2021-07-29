@@ -38,7 +38,7 @@ let displayValue = false;
 let operand1;
 let operand2;
 let operator;
-let timesClicked = 0;
+let operatorPressed;
 
 const span = document.querySelector('.values');
 const numbers = document.querySelectorAll('.number');
@@ -54,6 +54,12 @@ function clearScreen() {
     // clearOperatorsAndOperands();
 }
 
+function adjustNumberSize(number) {
+    if((+number % 1) !== 0) {
+        return Number(number.toFixed(12));
+    }
+}
+
 function clearOperatorsAndOperands() {
     operand1 = null;
     operand2 = null;
@@ -64,6 +70,7 @@ numbers.forEach(number => number.addEventListener('click', () => {
     if(displayValue || span.textContent == 0) {
         span.textContent = `${number.textContent}`;
         displayValue = false;
+        operatorPressed = false;
     } else {
         span.textContent = span.textContent + `${number.textContent}`;  
     }
@@ -72,13 +79,18 @@ numbers.forEach(number => number.addEventListener('click', () => {
 clearButton.addEventListener('click', clearScreen);
 
 additionButton.addEventListener('click', () => {
-    if(operand1) {
+    if(operatorPressed) {
+        displayValue = true;
+        console.log('test');
+        
+    } else if(operand1) {
         operator = 'addition';
         operand2 = span.textContent;
         console.log(operator, operand1, operand2);
-        span.textContent = `${operate(operator, +operand1, +operand2)}`;
+        span.textContent = `${adjustNumberSize(operate(operator, +operand1, +operand2))}`;
         operand1 = span.textContent;
         displayValue = true;
+        operatorPressed = true;
         
     } else {
         operator = 'addition';
@@ -89,26 +101,72 @@ additionButton.addEventListener('click', () => {
 })
 
 subctractionButton.addEventListener('click', () => {
-    operator = 'subtraction';
-    operand1 = span.textContent;
-    clearScreen(); 
+    if(operatorPressed) {
+        displayValue = true;
+        console.log('test');
+        
+    } else if(operand1) {
+        operator = 'subtraction';
+        operand2 = span.textContent;
+        console.log(operator, operand1, operand2);
+        span.textContent = `${adjustNumberSize(operate(operator, +operand1, +operand2))}`;
+        operand1 = span.textContent;
+        displayValue = true;
+        operatorPressed = true;
+        
+    } else {
+        operator = 'subtraction';
+        operand1 = span.textContent; 
+        displayValue = true;       
+    }
 })
 
 multiplicationButton.addEventListener('click', () => {
-    operator = 'multiplication';
-    operand1 = span.textContent;
-    clearScreen(); 
+    if(operatorPressed) {
+        displayValue = true;
+        console.log('test');
+        
+    } else if(operand1) {
+        operator = 'multiplication';
+        operand2 = span.textContent;
+        console.log(operator, operand1, operand2);
+        span.textContent = `${adjustNumberSize(operate(operator, +operand1, +operand2))}`;
+        operand1 = span.textContent;
+        displayValue = true;
+        operatorPressed = true;
+        
+    } else {
+        operator = 'multiplication';
+        operand1 = span.textContent; 
+        displayValue = true;       
+    }
 })
 
 divisionButton.addEventListener('click', () => {
-    operator = 'division';
-    operand1 = span.textContent;
-    clearScreen(); 
+    
+    if(operatorPressed) {
+        displayValue = true;
+        console.log('test');
+        
+    } else if(operand1) {
+        operator = 'division';
+        operand2 = span.textContent;
+        console.log(operator, operand1, operand2);
+        span.textContent = `${adjustNumberSize(operate(operator, +operand1, +operand2))}`;
+        operand1 = span.textContent;
+        displayValue = true;
+        operatorPressed = true;
+        
+    } else {
+        operator = 'division';
+        operand1 = span.textContent; 
+        displayValue = true;       
+    }
 })
 equalButton.addEventListener('click', () => {
     operand2 = span.textContent;
     console.log(operator, operand1, operand2);
-    span.textContent = `${operate(operator, +operand1, +operand2)}`;
+    span.textContent = `${adjustNumberSize(operate(operator, +operand1, +operand2))}`;
     displayValue = true;
     clearOperatorsAndOperands();
     console.log(operator, operand1, operand2);
