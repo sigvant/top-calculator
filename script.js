@@ -49,6 +49,7 @@ const multiplicationButton = document.querySelector('.multiplication');
 const divisionButton = document.querySelector('.division');
 const equalButton = document.querySelector('.operate');
 const deleteButton = document.querySelector('.delete');
+const dotButton = document.querySelector('.dot');
 
 function clearScreen() {
     span.textContent = 0;
@@ -70,7 +71,7 @@ function clearOperatorsAndOperands() {
 }
 
 numbers.forEach(number => number.addEventListener('click', () => {
-    if(displayValue || span.textContent == 0) {
+    if(displayValue || span.textContent == '0') {
         span.textContent = `${number.textContent}`;
         displayValue = false;
         operatorPressed = false;
@@ -81,6 +82,15 @@ numbers.forEach(number => number.addEventListener('click', () => {
         }
     }
 }))
+
+dotButton.addEventListener('click', function addDot () {
+    if(!span.textContent.includes('.')) {
+        span.textContent = span.textContent + `${this.textContent}`;
+        displayValue = false;
+    } else {
+        displayValue = false;
+    }
+})
 
 clearButton.addEventListener('click', clearScreen);
 
@@ -175,7 +185,7 @@ equalButton.addEventListener('click', () => {
     span.textContent = `${adjustNumberSize(operate(operator, +operand1, +operand2))}`;
     displayValue = true;
     operatorPressed = true;
-    clearOperatorsAndOperands();
+    operator = null;
     operand1 = span.textContent;    
     console.log(operator, operand1, operand2);
 
