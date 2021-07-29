@@ -55,8 +55,10 @@ function clearScreen() {
 }
 
 function adjustNumberSize(number) {
-    if((+number % 1) !== 0) {
-        return Number(number.toFixed(12));
+    if(Number(number % 1) != 0) {
+        return Number(number.toFixed(10));
+    } else {
+        return Number(number.toFixed(10));
     }
 }
 
@@ -73,6 +75,9 @@ numbers.forEach(number => number.addEventListener('click', () => {
         operatorPressed = false;
     } else {
         span.textContent = span.textContent + `${number.textContent}`;  
+        if(span.textContent.length > 10) {
+            span.textContent = span.textContent.substr(0,12);
+        }
     }
 }))
 
@@ -167,6 +172,9 @@ equalButton.addEventListener('click', () => {
     operand2 = span.textContent;
     console.log(operator, operand1, operand2);
     span.textContent = `${adjustNumberSize(operate(operator, +operand1, +operand2))}`;
+    if(span.textContent.length > 11) {
+        span.textContent = span.textContent.substr(4, 13);
+    }
     displayValue = true;
     clearOperatorsAndOperands();
     console.log(operator, operand1, operand2);
