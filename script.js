@@ -48,10 +48,11 @@ const subctractionButton = document.querySelector('.subtraction');
 const multiplicationButton = document.querySelector('.multiplication');
 const divisionButton = document.querySelector('.division');
 const equalButton = document.querySelector('.operate');
+const deleteButton = document.querySelector('.delete');
 
 function clearScreen() {
     span.textContent = 0;
-    // clearOperatorsAndOperands();
+    clearOperatorsAndOperands();
 }
 
 function adjustNumberSize(number) {
@@ -172,14 +173,19 @@ equalButton.addEventListener('click', () => {
     operand2 = span.textContent;
     console.log(operator, operand1, operand2);
     span.textContent = `${adjustNumberSize(operate(operator, +operand1, +operand2))}`;
-    if(span.textContent.length > 11) {
-        span.textContent = span.textContent.substr(4, 13);
-    }
     displayValue = true;
+    operatorPressed = true;
     clearOperatorsAndOperands();
+    operand1 = span.textContent;    
     console.log(operator, operand1, operand2);
 
 })
 
-
+deleteButton.addEventListener('click', () => {
+    span.textContent = span.textContent.slice(0, -1);
+    if(span.textContent == '') {
+        span.textContent = '0';
+    }
+        
+})
 

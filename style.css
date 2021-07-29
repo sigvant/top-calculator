@@ -1,25 +1,28 @@
 body {
     padding: 0;
     margin: 0;
-
+    background: rgb(212, 211, 211);
 }
 
 #calculatorframe {
     border: 3px solid black;
     margin: 0 auto;
+    margin-top: 65px;
     padding: 20px;
-    width: 450px;
+    width: 580px;
     height: 610px;
     display: flex;
     flex-direction: column;
     align-items: center;
     box-shadow: 0 0 10px black;
+    border-radius: 5%;
+    background-color: silver;
 }
 
 #screen {
     margin-bottom: 10px;
     flex: 1fr;
-    width: 400px;
+    width: 500px;
     height: 200px;
     border: 2px solid black;
     background: white;
@@ -39,16 +42,40 @@ body {
 #buttons {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    width: 400px;
+    width: 500px;
     height: 400px;
     border: 1px solid black;
     background: grey;
     border-radius: 0%;
-    font-size: 1rem;
+    
 }
 
 .button {
-    font-size: 1.75rem;
     font-family: monospace;
     border-radius: 5%;
+    font-size: 2.0rem;
+    font-weight: 800;
+}
+
+.delete {
+    background-color: blue;
+    color: white;
+}
+
+.clear {
+    background-color: red;
+}
+
+.addition, .division, .subtraction, .multiplication {
+    background-color: rgba(211, 183, 23, 0.926);
+}
+
+.number {
+    background-color: grey;
+    color: white;
+}
+
+.dot {
+    background-color: white;
+    color: black;
 }
