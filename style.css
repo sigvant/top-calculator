@@ -9,7 +9,7 @@ body {
     margin: 0 auto;
     margin-top: 65px;
     padding: 20px;
-    width: 580px;
+    width: 600px;
     height: 610px;
     display: flex;
     flex-direction: column;
@@ -85,7 +85,7 @@ body {
     margin: 0 auto;
     margin-top: 65px;
     padding: 20px;
-    width: 580px;
+    width: 600px;
     height: 35px;
     display: flex;
     flex-direction: column;
